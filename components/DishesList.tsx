@@ -17,7 +17,7 @@ import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
 
 const GET_RESTAURANT_DISHES = gql`
-	query($id: ID!) {
+	query ($id: ID!) {
 		restaurant(id: $id) {
 			id
 			name
@@ -67,7 +67,7 @@ const DishesList = ({ resID }: { resID: string }) => {
 								<CardImg
 									top={true}
 									style={{ height: 250 }}
-									src={`${process.env.NEXT_PUBLIC_API_URL}${dish.image.url}`}
+									src={`${dish.image.url}`}
 								/>
 								<CardBody>
 									<CardTitle>{dish.name}</CardTitle>

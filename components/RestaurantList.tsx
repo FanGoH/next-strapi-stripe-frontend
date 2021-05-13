@@ -25,14 +25,15 @@ const QUERY = gql`
 `;
 
 const RestaurantList = ({ search }) => {
-	const { data, loading, error } = useQuery<{
-		restaurants: Array<{
-			id: string;
-			name: string;
-			description: string;
-			image: { url: string };
-		}>;
-	}>(QUERY);
+	const { data, loading, error } =
+		useQuery<{
+			restaurants: Array<{
+				id: string;
+				name: string;
+				description: string;
+				image: { url: string };
+			}>;
+		}>(QUERY);
 
 	if (loading) {
 		return <Alert color='success'>Loading</Alert>;
@@ -56,7 +57,7 @@ const RestaurantList = ({ search }) => {
 								<CardImg
 									top={true}
 									style={{ height: 250 }}
-									src={`${process.env.NEXT_PUBLIC_API_URL}${res.image.url}`}
+									src={`${res.image.url}`}
 								/>
 								<CardBody>
 									<CardTitle>{res.name}</CardTitle>

@@ -29,14 +29,11 @@ const App = ({ Component, pageProps }: AppProps) => {
 		}
 
 		if (token) {
-			fetch(
-				`https://next-strapi-stripe-backend.herokuapp.com//users/me`,
-				{
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				}
-			).then(async (res) => {
+			fetch(`https://next-strapi-stripe-backend.herokuapp.com/users/me`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}).then(async (res) => {
 				if (!res.ok) {
 					Cookie.remove("token");
 					setUser(null);

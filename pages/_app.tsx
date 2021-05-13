@@ -18,7 +18,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 	useEffect(() => {
 		const token = Cookie.get("token");
 		const cartCookie = Cookie.get("cart");
-		console.log(cartCookie);
 
 		if (typeof cartCookie === "string" && cart !== undefined) {
 			JSON.parse(cartCookie).forEach((item) => {
@@ -30,11 +29,14 @@ const App = ({ Component, pageProps }: AppProps) => {
 		}
 
 		if (token) {
-			fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/me`, {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			}).then(async (res) => {
+			fetch(
+				`https://next-strapi-stripe-backend.herokuapp.com//users/me`,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			).then(async (res) => {
 				if (!res.ok) {
 					Cookie.remove("token");
 					setUser(null);
